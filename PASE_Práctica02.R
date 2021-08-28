@@ -26,6 +26,11 @@ generador <- function(a,c,m,semilla,n){
   x = c(semilla)
   for(i in 2:(n+1)){
     x[i] = (a*x[i-1]+c)%%m
+
   }
-  return(x)
+  return(x[2:(n+1)])
 }
+
+# Histograma 1
+histrograma1 = generador(34, 0, 100, 15, 16)
+hist(histrograma1)
