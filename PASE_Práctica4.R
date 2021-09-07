@@ -1,37 +1,30 @@
-# Problema 1
-matriz_hilbert <- function(n){
-  matriz = matrix(nrow = n, ncol = n)
-  for(i in 1:n){
-    for(j in 1:n){
-      matriz[i,j] = 1/(i+j-1)
-    }
+g1 <- function(p){
+  x = runif(1)
+  if(x<p){
+    return(1)
   }
-  return(matriz)
-}
-
-print(matriz_hilbert(5))
-
-for(i in 1:40){
-  if (det(matriz_hilbert(i)) == 0) {
-    print(i)
-    break
+  else{
+    return(0)
   }
 }
-# Problema 2
 
-simpson <- function(fun, a, b, n=10000) {
-  h <- (b-a)/n
-  x <- seq(a, b, by=h)
-  if (n == 2) {
-    s <- fun(x[1]) + 4*fun(x[2]) +fun(x[3])
-  } else {
-    s <- fun(x[1]) + fun(x[n+1]) + 2*sum(fun(x[seq(2,n-1,by=2)])) + 4 *sum(fun(x[seq(1,n, by=2)]))
+g2 <- function(p){
+  contador = 0
+  while(g1(p)==0){
+    contador = contador + 1
   }
-  s <- s*h/3
-  return(s)
+  return(contador)
 }
 
-cuadrado <- function(x) x^2
-seno <- function(x) sin(x)
-ealamenos <- function(x) exp(-x**2)
-raiz <- function(x) sqrt(1+x**3)
+g2alt <- function(p){
+  x = runif(1)
+  intervalo = 0
+  extremo = p
+  k=0
+  while(x>extremo){
+    intervalo = intervalo + 1
+    k = k + 1
+    extremo = extremo + ((1-p)^k)*p
+  }
+  return(intervalo)
+}
